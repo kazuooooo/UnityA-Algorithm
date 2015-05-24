@@ -36,16 +36,22 @@ public class Block : MonoBehaviour
 		private Text sText;
 		//親ノードクラスのポインタ
 		public Pos parentPos;
+		//BlockManager
+		private BlockManger blockManagerClass;
+		private Caliculater caliculaterClass;
+		public GameObject[] aroundBlock;
 
 		void Start ()
 		{
+				blockManagerClass = GameObject.Find ("BlockManager").gameObject.GetComponent<BlockManger> ();
+				caliculaterClass = GameObject.Find ("Caliculator").gameObject.GetComponent<Caliculater> ();
 				//テキストオブジェクトを取得
 				cText = gameObject.transform.FindChild ("C").gameObject.GetComponent<Text> ();
 				hText = gameObject.transform.FindChild ("H").gameObject.GetComponent<Text> ();
 				sText = gameObject.transform.FindChild ("S").gameObject.GetComponent<Text> ();
 		}
 		//全てのスコアをセット
-		public void SetScore (int c, int h, int s)
+		public void SetProperty (int c, int h, int s)
 		{
 				SetCCost (c);
 				SetHCost (h);
@@ -91,9 +97,47 @@ public class Block : MonoBehaviour
 						break;
 				}
 		}
-
+		//親ノードポインターを設定
 		public void SetParentNode (GameObject parentBlock)
 		{
 				parentPos = parentBlock.GetComponent<Block> ().blockPos;
+		}
+
+		public void DoProcess ()
+		{
+				StartCoroutine (ProcessLate ());
+		}
+
+		private IEnumerator ProcessLate ()
+		{
+				yield return new WaitForSeconds (1.0f);
+				int cCost;
+				int hCost;
+				int score;
+
+				//自身をOpenにする
+				SetStatus (Status.Open);
+				//実コストを求める
+
+				//推定コストを求める
+				hCost = caliculaterClass.CalcHCost (gameObject, blockManagerClass.targetBlock);
+				SetHCost (hCost);
+
+				//スコアを求める
+				score = caliculaterClass.CalcScore (gameObject);
+				SetScore (score);
+				//親ノードポインタを求める
+
+				//周りのブロックにプロセスを呼ぶ
+				//周りのブロックを取得
+				aroundBlock = blockManagerClass.getAroundBlocks (gameObject);
+				//周りに対してDoProsessを呼ぶ
+				foreach (GameObject block in aroundBlock) {
+						if (block != null && block.GetComponent<Block> ().blockStatus == Status.None) {
+								block.GetComponent<Block> ().DoProcess ();
+						}
+				}
+				//終わったのでCloseにする
+				SetStatus (Status.Closed);
 		}
 }

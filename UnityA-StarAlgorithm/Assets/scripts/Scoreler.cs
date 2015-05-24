@@ -34,6 +34,7 @@ public class Scoreler : MonoBehaviour
 				//scoreを設定
 				score = caliculator.CalcScore (startBlock);
 				startBlock.GetComponent<Block> ().SetScore (score);
+				//親ノードはNoneなので何もしない
 
 		}
 }

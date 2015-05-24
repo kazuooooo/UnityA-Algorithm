@@ -1,0 +1,11 @@
+/Users/matsumotokazuya/Desktop/UnityA-Algorithm/UnityA-StarAlgorithm/Temp/bin/Debug/Assembly-CSharp.dll.mdb
+/Users/matsumotokazuya/Desktop/UnityA-Algorithm/UnityA-StarAlgorithm/Temp/bin/Debug/Assembly-CSharp.dll
+/Users/matsumotokazuya/Desktop/UnityA-Algorithm/UnityA-StarAlgorithm/obj/Debug/Assembly-CSharp.dll
+/Users/matsumotokazuya/Desktop/UnityA-Algorithm/UnityA-StarAlgorithm/obj/Debug/Assembly-CSharp.dll.mdb
+/Users/matsumotokazuya/Desktop/UnityA-Algorithm/UnityA-StarAlgorithm/Temp/bin/Debug/UnityEngine.dll
+/Users/matsumotokazuya/Desktop/UnityA-Algorithm/UnityA-StarAlgorithm/Temp/bin/Debug/UnityEditor.dll
+/Users/matsumotokazuya/Desktop/UnityA-Algorithm/UnityA-StarAlgorithm/Temp/bin/Debug/UnityEngine.UI.dll
+/Users/matsumotokazuya/Desktop/UnityA-Algorithm/UnityA-StarAlgorithm/Temp/bin/Debug/Mono.Cecil.dll
+/Users/matsumotokazuya/Desktop/UnityA-Algorithm/UnityA-StarAlgorithm/Temp/bin/Debug/nunit.framework.dll
+/Users/matsumotokazuya/Desktop/UnityA-Algorithm/UnityA-StarAlgorithm/Temp/bin/Debug/Unity.DataContract.dll
+/Users/matsumotokazuya/Desktop/UnityA-Algorithm/UnityA-StarAlgorithm/Temp/bin/Debug/ICSharpCode.NRefactory.dll

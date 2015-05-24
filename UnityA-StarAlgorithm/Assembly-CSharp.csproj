@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\scripts\Block.cs" />
+     <Compile Include="Assets\scripts\BlockManger.cs" />
      <Compile Include="Assets\scripts\Caliculater.cs" />
      <Compile Include="Assets\scripts\Maker.cs" />
      <Compile Include="Assets\scripts\Scoreler.cs" />

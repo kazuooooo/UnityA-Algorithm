@@ -23,6 +23,7 @@ public class Maker : MonoBehaviour
 								GameObject block = Instantiate (blockPrefab) as GameObject;
 //								座標を設定
 								block.GetComponent<Block> ().SetPosition (w, h);
+								block.name = "(" + w.ToString () + "," + h.ToString () + ")";
 								//ステータスをNoneに設定
 								block.GetComponent<Block> ().SetStatus (Block.Status.None);
 								//ステージに配置
