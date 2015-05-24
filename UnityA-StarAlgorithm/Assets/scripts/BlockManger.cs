@@ -82,4 +82,17 @@ public class BlockManger : MonoBehaviour
 				}
 				return minimumScore;
 		}
+
+		public void showRoute ()
+		{
+				GameObject block = targetBlock;
+				while (true) {
+						block.GetComponent<Block> ().SetRouteColor ();
+						block = block.GetComponent<Block> ().parentBlock;
+						if (block == startBlock) {
+								block.GetComponent<Block> ().SetRouteColor ();
+								break;
+						}
+				} 
+		}
 }

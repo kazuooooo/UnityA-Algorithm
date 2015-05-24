@@ -36,7 +36,7 @@ public class Block : MonoBehaviour
 		private Text hText;
 		private Text sText;
 		//親ノードクラスのポインタ
-		public Pos parentPos;
+		public GameObject parentBlock;
 		//BlockManager
 		private BlockManger blockManagerClass;
 		private Caliculater caliculaterClass;
@@ -98,15 +98,12 @@ public class Block : MonoBehaviour
 						break;
 				}
 		}
-		//親ノードポインターを設定
-		public void SetParentNode (GameObject parentBlock)
-		{
-				parentPos = parentBlock.GetComponent<Block> ().blockPos;
-		}
 
 		public void DoProcess (GameObject parentBlock)
 		{
-				StartCoroutine (ProcessLate (parentBlock));
+				if (blockManagerClass.targetBlock.GetComponent<Block> ().blockStatus != Status.Closed) {
+						StartCoroutine (ProcessLate (parentBlock));
+				}
 		}
 
 		private IEnumerator ProcessLate (GameObject parentBlock)
@@ -127,11 +124,7 @@ public class Block : MonoBehaviour
 						score = caliculaterClass.CalcScore (gameObject);
 						SetScore (score);
 				}
-
-
-
-				//親ノードポインタを求める
-
+						
 
 				//周りのブロックを取得
 				aroundBlock = blockManagerClass.getAroundBlocks (gameObject);
@@ -150,6 +143,8 @@ public class Block : MonoBehaviour
 								//スコアを求める
 								score = caliculaterClass.CalcScore (block);
 								blockClass.SetScore (score);
+								//親ノードに設定
+								blockClass.parentBlock = gameObject;
 						}
 				}
 
@@ -165,5 +160,10 @@ public class Block : MonoBehaviour
 						}
 				}
 						
+		}
+
+		public void SetRouteColor ()
+		{
+				gameObject.GetComponent<Image> ().color = Color.yellow;
 		}
 }
