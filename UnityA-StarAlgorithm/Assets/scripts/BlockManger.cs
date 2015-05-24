@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class BlockManger : MonoBehaviour
 {
@@ -21,7 +22,7 @@ public class BlockManger : MonoBehaviour
 				startBlock = maker.blockObjects [startBlockPos.posX, startBlockPos.posY];
 				targetBlock = maker.blockObjects [targetBlockPos.posX, targetBlockPos.posY];
 				blockArray = maker.blockObjects;
-				startBlock.GetComponent<Block> ().DoProcess ();
+				startBlock.GetComponent<Block> ().DoProcess (startBlock);
 		}
 		//周りのブロックを返す
 		public GameObject[] getAroundBlocks (GameObject block)
@@ -50,5 +51,35 @@ public class BlockManger : MonoBehaviour
 
 				}
 				return null;
+		}
+
+		public List<GameObject> getMinimumScoreOpenBlocks (int minimumScore)
+		{
+				List<GameObject> MinimumScoreBlocks = new List<GameObject> ();
+				int bestValue = 0;
+				foreach (GameObject block in blockArray) {
+						//状態がOpenだったら
+						if (block.GetComponent<Block> ().blockStatus == Block.Status.Open) {
+								if (block.GetComponent<Block> ().blockScore.S == minimumScore) {
+										//MinimumScoreBlocksに追加
+										MinimumScoreBlocks.Add (block);
+								}
+						}
+				}
+				return MinimumScoreBlocks;
+		}
+		//最小スコアを算出する
+		public int getMinimumScore ()
+		{
+				int minimumScore = 9999;
+				foreach (GameObject block in blockArray) {
+						//状態がOpenだったら
+						if (block.GetComponent<Block> ().blockStatus == Block.Status.Open) {
+								if (block.GetComponent<Block> ().blockScore.S <= minimumScore) {
+										minimumScore = block.GetComponent<Block> ().blockScore.S;
+								}
+						}
+				}
+				return minimumScore;
 		}
 }

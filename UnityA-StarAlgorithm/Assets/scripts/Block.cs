@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 [System.Serializable]
 public class Pos
@@ -103,41 +104,66 @@ public class Block : MonoBehaviour
 				parentPos = parentBlock.GetComponent<Block> ().blockPos;
 		}
 
-		public void DoProcess ()
+		public void DoProcess (GameObject parentBlock)
 		{
-				StartCoroutine (ProcessLate ());
+				StartCoroutine (ProcessLate (parentBlock));
 		}
 
-		private IEnumerator ProcessLate ()
+		private IEnumerator ProcessLate (GameObject parentBlock)
 		{
 				yield return new WaitForSeconds (1.0f);
 				int cCost;
 				int hCost;
 				int score;
 
-				//自身をOpenにする
-				SetStatus (Status.Open);
-				//実コストを求める
+				//スタートブロックの場合
+				if (gameObject == blockManagerClass.startBlock) {
+						//自身をOpenにする
+						SetStatus (Status.Open);
+						cCost = 0;
+						SetCCost (cCost);
+						hCost = caliculaterClass.CalcHCost (gameObject, blockManagerClass.targetBlock);
+						SetHCost (hCost);
+						score = caliculaterClass.CalcScore (gameObject);
+						SetScore (score);
+				}
 
-				//推定コストを求める
-				hCost = caliculaterClass.CalcHCost (gameObject, blockManagerClass.targetBlock);
-				SetHCost (hCost);
 
-				//スコアを求める
-				score = caliculaterClass.CalcScore (gameObject);
-				SetScore (score);
+
 				//親ノードポインタを求める
 
-				//周りのブロックにプロセスを呼ぶ
+
 				//周りのブロックを取得
 				aroundBlock = blockManagerClass.getAroundBlocks (gameObject);
-				//周りに対してDoProsessを呼ぶ
+				//周りにブロックをOpenにする。
 				foreach (GameObject block in aroundBlock) {
 						if (block != null && block.GetComponent<Block> ().blockStatus == Status.None) {
-								block.GetComponent<Block> ().DoProcess ();
+								Block blockClass = block.GetComponent<Block> ();
+								//openにする
+								blockClass.SetStatus (Status.Open);
+								//実コストを設定
+								cCost = this.blockScore.C + 1;
+								blockClass.SetCCost (cCost);
+								//推定コストを求める
+								hCost = caliculaterClass.CalcHCost (block, blockManagerClass.targetBlock);
+								blockClass.SetHCost (hCost);
+								//スコアを求める
+								score = caliculaterClass.CalcScore (block);
+								blockClass.SetScore (score);
 						}
 				}
+
 				//終わったのでCloseにする
 				SetStatus (Status.Closed);
+
+				//Openのブロックの中から一番スコアの低いものに対してDoProcessを呼ぶ
+				if (gameObject != blockManagerClass.targetBlock) {
+						int minimumScore = blockManagerClass.getMinimumScore ();
+						List<GameObject> nextBlocks = blockManagerClass.getMinimumScoreOpenBlocks (minimumScore);
+						foreach (GameObject block in nextBlocks) {
+								block.GetComponent<Block> ().DoProcess (gameObject);
+						}
+				}
+						
 		}
 }

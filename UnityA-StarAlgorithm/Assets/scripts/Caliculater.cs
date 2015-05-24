@@ -4,9 +4,14 @@ using System.Collections;
 public class Caliculater : MonoBehaviour
 {
 		//実コストを計算
-		public int CalcCCost (GameObject block)
+		public int CalcCCost (GameObject parentBlock, GameObject block)
 		{
-				return 0;
+				if (parentBlock == block) {
+						return 0;
+				} else {
+						int cCost = block.GetComponent<Block> ().blockScore.C + 1;
+						return cCost;
+				}
 		}
 		//推定スコアを計算
 		public int CalcHCost (GameObject block, GameObject targetBlock)
