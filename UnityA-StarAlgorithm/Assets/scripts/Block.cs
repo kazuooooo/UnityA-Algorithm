@@ -18,6 +18,7 @@ public class Block : MonoBehaviour
 				None = 0,
 				Open = 1,
 				Closed = -1,
+				Unabled = -2,
 		}
 		//スコアの構造体
 		public struct Score
@@ -164,6 +165,13 @@ public class Block : MonoBehaviour
 
 		public void SetRouteColor ()
 		{
+				print ("callRouteColor");
 				gameObject.GetComponent<Image> ().color = Color.yellow;
+		}
+
+		public void SetUnableBlock ()
+		{
+				gameObject.GetComponent<Image> ().color = Color.black;
+				blockStatus = Block.Status.Unabled;
 		}
 }

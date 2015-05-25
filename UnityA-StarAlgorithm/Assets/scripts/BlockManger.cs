@@ -16,6 +16,7 @@ public class BlockManger : MonoBehaviour
 		public Maker maker;
 		// blockArray
 		public GameObject[,] blockArray;
+		public List<RectTransform> Route;
 
 		public void Play ()
 		{
@@ -72,6 +73,7 @@ public class BlockManger : MonoBehaviour
 		public int getMinimumScore ()
 		{
 				int minimumScore = 9999;
+
 				foreach (GameObject block in blockArray) {
 						//状態がOpenだったら
 						if (block.GetComponent<Block> ().blockStatus == Block.Status.Open) {
@@ -86,10 +88,15 @@ public class BlockManger : MonoBehaviour
 		public void showRoute ()
 		{
 				GameObject block = targetBlock;
+				Route = new List<RectTransform> ();
+				Route.Add (targetBlock.GetComponent<RectTransform> ());
 				while (true) {
-						block.GetComponent<Block> ().SetRouteColor ();
-						block = block.GetComponent<Block> ().parentBlock;
-						if (block == startBlock) {
+						if (block != startBlock) {
+								block.GetComponent<Block> ().SetRouteColor ();
+								block = block.GetComponent<Block> ().parentBlock;
+								Route.Add (block.GetComponent<RectTransform> ());
+								//StartBlockだったら色だけ付けて終了
+						} else {
 								block.GetComponent<Block> ().SetRouteColor ();
 								break;
 						}
