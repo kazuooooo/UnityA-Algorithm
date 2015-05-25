@@ -1,10 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/scripts/Player.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/scripts/Stage/StageCreator.cs">
     <Files>
-      <File FileName="Assets/scripts/BlockManger.cs" Line="92" Column="58" />
-      <File FileName="Assets/scripts/Player.cs" Line="22" Column="5" />
-      <File FileName="Assets/scripts/Block.cs" Line="168" Column="27" />
+      <File FileName="Assets/scripts/Stage/StageTextDataAnalyzer.cs" Line="24" Column="3" />
+      <File FileName="Assets/scripts/Route/Maker.cs" Line="1" Column="1" />
+      <File FileName="Assets/scripts/Stage/StageCreator.cs" Line="18" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -46,12 +46,16 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\scripts\Block.cs" />
-     <Compile Include="Assets\scripts\BlockManger.cs" />
-     <Compile Include="Assets\scripts\Caliculater.cs" />
-     <Compile Include="Assets\scripts\Maker.cs" />
-     <Compile Include="Assets\scripts\Player.cs" />
-     <Compile Include="Assets\scripts\Scoreler.cs" />
+     <Compile Include="Assets\scripts\GameManager.cs" />
+     <Compile Include="Assets\scripts\Route\Block.cs" />
+     <Compile Include="Assets\scripts\Route\BlockManger.cs" />
+     <Compile Include="Assets\scripts\Route\Caliculater.cs" />
+     <Compile Include="Assets\scripts\Route\Maker.cs" />
+     <Compile Include="Assets\scripts\Route\Player.cs" />
+     <Compile Include="Assets\scripts\Route\Scoreler.cs" />
+     <Compile Include="Assets\scripts\Stage\StageCreator.cs" />
+     <Compile Include="Assets\scripts\Stage\StageTextDataAnalyzer.cs" />
+     <None Include="Assets\StageData\CCmaptest.txt" />
      <None Include="Assets\Plugins\Pixelplacement\iTween\ReadMe!\ReadMe!.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/4.6.4/UnityEngine.UI.dll</HintPath>
