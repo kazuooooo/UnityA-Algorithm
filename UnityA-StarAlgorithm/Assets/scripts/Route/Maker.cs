@@ -12,7 +12,6 @@ public class Maker : MonoBehaviour
 		void Awake ()
 		{
 				blockObjects = new GameObject[stageHeight, stageWidth];
-				initStage ();
 		}
 
 		public void initStage ()

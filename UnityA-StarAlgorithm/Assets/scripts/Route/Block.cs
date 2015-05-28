@@ -126,9 +126,10 @@ public class Block : MonoBehaviour
 						SetScore (score);
 				}
 						
-
+				print ("Process" + gameObject.name);
 				//周りのブロックを取得
 				aroundBlock = blockManagerClass.getAroundBlocks (gameObject);
+
 				//周りにブロックをOpenにする。
 				foreach (GameObject block in aroundBlock) {
 						if (block != null && block.GetComponent<Block> ().blockStatus == Status.None) {

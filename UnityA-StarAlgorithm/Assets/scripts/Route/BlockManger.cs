@@ -13,16 +13,21 @@ public class BlockManger : MonoBehaviour
 		//Caliculater
 		public Caliculater caliculator;
 		//Maker
-		public Maker maker;
+		public StageCreator maker;
 		// blockArray
 		public GameObject[,] blockArray;
 		public List<RectTransform> Route;
 
+		public void Awake ()
+		{
+				maker = GameObject.FindWithTag ("Maker").GetComponent<StageCreator> ();
+		}
+
 		public void Play ()
 		{
-				startBlock = maker.blockObjects [startBlockPos.posX, startBlockPos.posY];
-				targetBlock = maker.blockObjects [targetBlockPos.posX, targetBlockPos.posY];
-				blockArray = maker.blockObjects;
+				startBlock = maker.tileObjectsArray [startBlockPos.posX, startBlockPos.posY];
+				targetBlock = maker.tileObjectsArray [targetBlockPos.posX, targetBlockPos.posY];
+				blockArray = maker.tileObjectsArray;
 				startBlock.GetComponent<Block> ().DoProcess (startBlock);
 		}
 		//周りのブロックを返す
@@ -47,7 +52,9 @@ public class BlockManger : MonoBehaviour
 
 		private GameObject getBlock (int x, int y)
 		{
-				if (x >= 0 && x < 5 && y >= 0 && y < 5) {
+				print ("xtilenum" + maker.stageXTilesNum);
+				print ("ytilenum" + maker.stageYTilesNum);
+				if (x >= 0 && x < maker.stageXTilesNum && y >= 0 && y < maker.stageYTilesNum) {
 						return blockArray [x, y];
 
 				}

@@ -46,12 +46,12 @@
 -define:UNITY_EDITOR_OSX
 -define:UNITY_PRO_LICENSE
 'Assets/scripts/GameManager.cs'
-'Assets/scripts/Route/Block.cs'
 'Assets/scripts/Route/BlockManger.cs'
 'Assets/scripts/Route/Caliculater.cs'
 'Assets/scripts/Route/Maker.cs'
 'Assets/scripts/Route/Player.cs'
 'Assets/scripts/Route/Scoreler.cs'
+'Assets/scripts/Route/Tile.cs'
 'Assets/scripts/Stage/StageCreator.cs'
 'Assets/scripts/Stage/StageTextDataAnalyzer.cs'
 -r:'/Applications/Unity/Unity.app/Contents/Frameworks/Mono/lib/mono/unity/System.Runtime.Serialization.dll'

@@ -52,7 +52,5 @@
 'Assets/scripts/Route/Maker.cs'
 'Assets/scripts/Route/Player.cs'
 'Assets/scripts/Route/Scoreler.cs'
-'Assets/scripts/Stage/StageCreator.cs'
-'Assets/scripts/Stage/StageTextDataAnalyzer.cs'
 -r:'/Applications/Unity/Unity.app/Contents/Frameworks/Mono/lib/mono/unity/System.Runtime.Serialization.dll'
 -r:'/Applications/Unity/Unity.app/Contents/Frameworks/Mono/lib/mono/unity/System.Xml.Linq.dll'
